@@ -1,153 +1,70 @@
-# Astro Theme Pure
+# 谢威的博客
 
-English | [简体中文](./README-zh-CN.md)
+记录学习和思考的个人博客，使用 Astro 与 Astro Theme Pure 构建，部署到 GitHub Pages。
 
-A simple, fast and powerful blog & document theme built by Astro.
+## 环境要求
 
-[![GitHub deployments](https://img.shields.io/github/deployments/cworld1/astro-theme-pure/production?style=flat&logo=vercel&label=vercel)](https://astro-pure.js.org/)
-[![NPM Version](https://img.shields.io/npm/v/astro-pure?logo=npm&style=flat)](https://www.npmjs.com/package/astro-pure)
-[![GitHub Release](https://img.shields.io/github/v/release/cworld1/astro-theme-pure?include_prereleases&style=flat&label=template)](https://github.com/cworld1/astro-theme-pure/releases)
-[![GitHub License](https://img.shields.io/github/license/cworld1/astro-theme-pure?style=flat)](https://github.com/cworld1/astro-theme-pure/blob/main/LICENSE)
+- Node.js >= 22.12
+- npm
 
-![image](./.github/assets/header.webp)
-![image](./.github/assets/body.webp)
+## 本地开发
 
-> [!NOTE]
-> Known issues: Header & customize options is still under development (template exposed still).
-
-## Introduction
-
-Checkout [Demo Site →](https://astro-pure.js.org/)
-
-### :fire: Features
-
-- [x] :rocket: Fast & high performance
-- [x] :star: Simple & clean design
-- [x] :iphone: Responsive design
-- [x] :mag: Full-site search built with [pagefind](https://pagefind.app/)
-- [x] :world_map: Sitemap & RSS feed
-- [x] :spider_web: SEO-friendly
-- [x] :book: TOC (table of contents)
-- [x] :framed_picture: Dynamic open graph generation for posts
-- [x] :framed_picture: Mediumzoom lightbox for images
-
-### :package: Components
-
-Theme includes a lot of components, which can not only be used in the theme, but also in other astro projects.
-
-> For other astro projects, UnoCSS is required. See [Package README](https://github.com/cworld1/astro-theme-pure/blob/main/packages/pure/README.md#use-with-common-astro-project) for more details.
-
-- Basic components: `Aside`, `Tabs`, `Timeline`, `Steps`, `Spoiler`...
-- Advanced components: `GithubCard`, `LinkPreview`, `Quote`, `QRCode`...
-
-### :white_check_mark: Lighthouse score
-
-[![lighthouse-score](./.github/assets/lighthouse-score.png)](https://pagespeed.web.dev/analysis/https-cworld-top/o229zrt5o4?form_factor=mobile&hl=en)
-
-## Documentation
-
-[Docs](https://astro-pure.js.org/docs) | [Showcase](https://github.com/cworld1/astro-theme-pure/issues/10)
-
-## Package
-
-See [astro-theme-pure](https://www.npmjs.com/package/astro-pure) on npm.
-
-## Local development
-
-### Environment requirements
-
-> [!WARNING]
-> Astro 6.0+ requires Node.js 22.12.0 or newer. Odd-numbered Node.js versions such as 23 are not supported by Astro.
-
-You can choose one of the following methods for project development:
-
-- [Bun](https://bun.com/get)
-- [Node.js](https://nodejs.org/)
-
-For deployment methods using container like [Docker](https://docs.docker.com/get-started/get-docker) & [Docker Compose](https://docs.docker.com/compose/install), please refer the documention [Using Docker Compose](https://astro-pure.js.org/docs/setup/using-docker-compose).
-
-### Getting started
-
-1. Clone the repository and enter the directory:
-
-   ```shell
-   git clone https://github.com/cworld1/astro-theme-pure.git
-   cd astro-theme-pure
-   ```
-
-   Edit `src/site.config.ts` to customize the site.
-
-2. Install dependencies:
-
-   ```shell
-   bun install
-   ```
-
-3. Start the development server:
-
-   ```shell
-   bun dev
-   # or
-   pnpm dev
-   # or
-   yarn run dev
-   # or
-   npm run dev
-   ```
-
-   The development server runs at <http://localhost:4321> by default.
-
-### Creating a new blog article
-
-After setting up either development environment, you can create a new blog article:
-
-```shell
-bun pure new
+```bash
+npm install
+npm run dev
 ```
 
-## Deployment
+默认访问地址为 `http://localhost:4321`。
 
-### Manual deployment
+## 构建
 
-Build the production site into the `./dist` directory:
-
-```shell
-bun run build
+```bash
+npm run build
+npm run preview
 ```
 
-Once the build is complete, the generated static files will be located in the `./dist` directory. You can deploy this directory to any platform that supports static site hosting.
+静态文件会生成到 `dist/`。
 
-Preview the production build locally:
+## 内容目录
 
-```shell
-bun preview
+- 博客文章：`src/content/blog/`
+- 文档：`src/content/docs/`
+- 站点配置：`src/site.config.ts`
+- 页面：`src/pages/`
+- 静态资源：`public/`
+
+文章使用 Markdown 或 MDX，必要字段为 `title`、`description` 和 `publishDate`，可选字段包括 `tags`、`heroImage`、`draft`、`pin`。
+
+## 部署到 GitHub Pages
+
+仓库已经包含 `.github/workflows/deploy.yml`。首次部署时：
+
+1. 在 GitHub 创建仓库并在本地关联远端。
+2. 推送 `main` 分支。
+3. 打开仓库的 `Settings → Pages`。
+4. 将 `Build and deployment` 的来源设置为 `GitHub Actions`。
+5. 等待 Actions 完成部署。
+
+默认域名按用户站点 `https://history-turing.github.io` 配置。如果仓库名不是 `history-turing.github.io`，需要同时在 `astro.config.ts` 中设置对应的 `base`，例如仓库名为 `blog` 时使用 `/blog`。
+
+## 评论
+
+评论目前暂时关闭。接入自己的 Waline 服务后，在 `src/site.config.ts` 中设置：
+
+```ts
+waline: {
+  enable: true,
+  server: 'https://your-waline.example.com/'
+}
 ```
 
-### Static hosting platforms
+## 自定义站点
 
-You can deploy your blog to any static site hosting platform.
-
-- Refer to the official [Astro Deployment Guide](https://docs.astro.build/en/guides/deploy/) for specific deployment methods.
-- Depending on the deployment platform you choose, you may need to modify the `astro.config.ts` configuration file in the project.
-
-|                                                                        Vercel                                                                         |                                                                              Netlify                                                                               |
-| :---------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fcworld1%2Fastro-theme-pure) | [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/cworld1/astro-theme-pure) |
-
-## Contributions
-
-To spend more time coding and less time fiddling with whitespace, this project uses code conventions and styles to encourage consistency. Code with a consistent style is easier (and less error-prone!) to review, maintain, and understand.
-
-## Thanks
-
-- [Astro Cactus](https://github.com/chrismwilliams/astro-theme-cactus)
-- [Astro Resume](https://github.com/srleom/astro-theme-resume)
-- [Starlight](https://github.com/withastro/starlight)
-
-Other third party references are on [Docs#Contributions](https://astro-pure.js.org/docs/advanced/about). Appreciate for all open source libraries.
-
-## License
-
-This project is licensed under the Apache 2.0 License.
-
-[![Star History Chart](https://star-history.dera.page/svg?repos=cworld1/astro-theme-pure&type=Date)](https://star-history.dera.page/#cworld1/astro-theme-pure&Date)
+- 站点名称、作者、描述、导航、社交链接：`src/site.config.ts`
+- 正式域名与部署路径：`astro.config.ts`
+- 首页：`src/pages/index.astro`
+- 关于页：`src/pages/about/index.astro`
+- 项目页：`src/pages/projects/index.astro`
+- 友链：`public/links.json`
+- 头像：`src/assets/avatar.jpg`
+- 分享封面：`public/images/social-card.png`

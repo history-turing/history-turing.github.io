@@ -1,10 +1,14 @@
 ---
 layout: '@/layouts/IndividualPage.astro'
 
-title: 'Disclaimer'
-description: 'Last updated: 2024-11-26'
-language: 'En'
+title: '免责声明'
+description: '最后更新：2026-11-01'
+language: 'zh-CN'
 back: '/terms'
 ---
 
-It may be recommended to generate policies from [PolicyMaker.io](https://policymaker.io).
+本站内容仅代表个人观点和经验记录，不构成专业建议，也不代表我所在学校或任何组织的立场。
+
+技术内容可能随时间变化，请在采用前自行验证。因参考本站内容造成的任何损失，本站不承担赔偿责任。
+
+本站引用的外部链接由对应网站负责，其内容、可用性和安全性不在本站控制范围内。

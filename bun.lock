@@ -3,7 +3,7 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "astro-theme-pure",
+      "name": "xie-wei-blog",
       "dependencies": {
         "@astrojs/check": "0.9.9",
         "@astrojs/compiler-rs": "^0.1.10",
